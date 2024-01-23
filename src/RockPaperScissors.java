@@ -6,9 +6,11 @@ public class RockPaperScissors {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose [r]ock, [p]aper, [s]cissors:");
-        String command = " ";
+        String command = "";
 
         int gameCount = 0;
+        int winsOfPlayers = 0;
+        int winsOfComputer = 0;
 
         while(!command.equals("End")) {
             String userInput = scanner.nextLine();
@@ -25,6 +27,7 @@ public class RockPaperScissors {
                 System.out.println(playerMove);
             } else {
                 System.out.println("Invalid input. Try again...");
+                continue;
 
             }
             userInput = scanner.nextLine();
@@ -49,22 +52,33 @@ public class RockPaperScissors {
 
             if ((playerMove.equals("rock") && computerMove.equals("scissors")) || (playerMove.equals("scissors") && computerMove.equals("paper")) || (playerMove.equals("paper") && computerMove.equals("rock"))) {
                 System.out.println("You win.");
+                winsOfPlayers++;
             } else if ((computerMove.equals("scissors") && (playerMove.equals("rock")) || (playerMove.equals("rock") && computerMove.equals("paper")) || (playerMove.equals("paper") && computerMove.equals("scissors")))) {
                 System.out.println("You lose.");
+                winsOfComputer++;
             } else {
                 System.out.println("The game was a draw.");
             }
             gameCount++;
-            System.out.println("Play again: ");
+            System.out.println("Players score: " + winsOfPlayers);
+            System.out.println("Computers score:  "+ winsOfComputer);
+
+            System.out.println("Play again.");
             System.out.println("Choose [r]ock, [p]aper, [s]cissors:");
 
-            if (gameCount == 3) {
-                System.out.println("Game ended");
-                return;
+
+            if (gameCount == 5) {
+                System.out.println("Game finish");
+                break;
             }
 
         }
-
+        if (winsOfComputer > winsOfPlayers) {
+            System.out.printf("The winner is the computer with %d points%n", winsOfComputer);
+        } else {
+            System.out.printf("The winner is the player with %d points%n", winsOfPlayers);
+        }
+        System.out.println("Game ended.");
     }
     private static final String ROCK = "rock";
     private static final String PAPER = "paper";
