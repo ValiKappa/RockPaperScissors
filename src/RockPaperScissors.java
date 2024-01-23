@@ -50,6 +50,8 @@ public class RockPaperScissors {
             System.out.println("The game was a draw.");
         }
 
+        System.out.println("Play again:");
+
 
     }
     private static final String ROCK = "rock";
